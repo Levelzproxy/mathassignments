@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Hub</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127918;</text></svg>">
+<style>
+  :root {
+    --bg: #0b0d12; --card: #151a23; --card-hi: #1c2230; --line: #252c3a;
+    --txt: #e9edf5; --dim: #8892a6; --accent: #5b8cff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--txt);
+    font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    position: sticky; top: 0; z-index: 10;
+    padding: 18px 20px 14px;
+    background: rgba(11, 13, 18, .92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  h1 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: .2px; white-space: nowrap; }
+  h1 span { color: var(--accent); }
+  #search {
+    flex: 1 1 240px; min-width: 180px;
+    padding: 9px 12px; font-size: 14px; color: var(--txt);
+    background: var(--card); border: 1px solid var(--line); border-radius: 9px;
+    outline: none;
+  }
+  #search:focus { border-color: var(--accent); }
+  #count { color: var(--dim); font-size: 13px; white-space: nowrap; }
+  main { max-width: 1180px; margin: 0 auto; padding: 18px 20px 60px; }
+  .grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .card {
+    display: flex; flex-direction: column; gap: 3px;
+    padding: 12px 14px; border-radius: 11px; text-decoration: none;
+    background: var(--card); border: 1px solid var(--line); color: var(--txt);
+    transition: background .13s, border-color .13s, transform .13s;
+  }
+  .card:hover { background: var(--card-hi); border-color: var(--accent); transform: translateY(-1px); }
+  .card .name { font-weight: 600; font-size: 14px; }
+  .card .file { font-size: 11px; color: var(--dim); overflow-wrap: anywhere; }
+  .card.hide { display: none; }
+  #empty { display: none; padding: 40px 0; color: var(--dim); text-align: center; }
+  #empty.show { display: block; }
+  footer { max-width: 1180px; margin: 0 auto; padding: 0 20px 40px; color: var(--dim); font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Game <span>Hub</span></h1>
+    <input id="search" type="search" placeholder="Search 252 games..." autocomplete="off" spellcheck="false" aria-label="Search games">
+    <div id="count">252 games</div>
+  </div>
+</header>
+<main>
+  <div class="grid">
+      <a class="card" href="1.5.html" data-search="1.5 1.5.html"><span class="name">1.5</span><span class="file">1.5.html</span></a>
+      <a class="card" href="1.8.html" data-search="1.8 1.8.html"><span class="name">1.8</span><span class="file">1.8.html</span></a>
+      <a class="card" href="100in1nes.html" data-search="100in1nes 100in1nes.html"><span class="name">100in1nes</span><span class="file">100in1nes.html</span></a>
+      <a class="card" href="10bullets.html" data-search="10bullets 10bullets.html"><span class="name">10bullets</span><span class="file">10bullets.html</span></a>
+      <a class="card" href="1d1d.html" data-search="1d1d 1d1d.html"><span class="name">1d1d</span><span class="file">1d1d.html</span></a>
+      <a class="card" href="1v1lol.html" data-search="1v1lol 1v1lol.html"><span class="name">1v1lol</span><span class="file">1v1lol.html</span></a>
+      <a class="card" href="2048.html" data-search="2048 2048.html"><span class="name">2048</span><span class="file">2048.html</span></a>
+      <a class="card" href="3dgeodash.html" data-search="3dgeodash 3dgeodash.html"><span class="name">3dgeodash</span><span class="file">3dgeodash.html</span></a>
+      <a class="card" href="4thandgoal.html" data-search="4thandgoal 4thandgoal.html"><span class="name">4thandgoal</span><span class="file">4thandgoal.html</span></a>
+      <a class="card" href="60%20Seconds%20Burger%20Run.html" data-search="60 seconds burger run 60 seconds burger run.html"><span class="name">60 Seconds Burger Run</span><span class="file">60 Seconds Burger Run.html</span></a>
+      <a class="card" href="8ballpool.html" data-search="8ballpool 8ballpool.html"><span class="name">8ballpool</span><span class="file">8ballpool.html</span></a>
+      <a class="card" href="academytale.html" data-search="academytale academytale.html"><span class="name">Academytale</span><span class="file">academytale.html</span></a>
+      <a class="card" href="Achievmentunlocked.html" data-search="achievmentunlocked achievmentunlocked.html"><span class="name">Achievmentunlocked</span><span class="file">Achievmentunlocked.html</span></a>
+      <a class="card" href="Achievmentunlocked%202.html" data-search="achievmentunlocked 2 achievmentunlocked 2.html"><span class="name">Achievmentunlocked 2</span><span class="file">Achievmentunlocked 2.html</span></a>
+      <a class="card" href="adanceoffireandice.html" data-search="adanceoffireandice adanceoffireandice.html"><span class="name">Adanceoffireandice</span><span class="file">adanceoffireandice.html</span></a>
+      <a class="card" href="agariolite.html" data-search="agariolite agariolite.html"><span class="name">Agariolite</span><span class="file">agariolite.html</span></a>
+      <a class="card" href="Age%20of%20War%202.html" data-search="age of war 2 age of war 2.html"><span class="name">Age of War 2</span><span class="file">Age of War 2.html</span></a>
+      <a class="card" href="ageofwar.html" data-search="ageofwar ageofwar.html"><span class="name">Ageofwar</span><span class="file">ageofwar.html</span></a>
+      <a class="card" href="Altered%20Beast.html" data-search="altered beast altered beast.html"><span class="name">Altered Beast</span><span class="file">Altered Beast.html</span></a>
+      <a class="card" href="amongus.html" data-search="amongus amongus.html"><span class="name">Amongus</span><span class="file">amongus.html</span></a>
+      <a class="card" href="angrybirdsslingshotfrenzy.html" data-search="angrybirdsslingshotfrenzy angrybirdsslingshotfrenzy.html"><span class="name">Angrybirdsslingshotfrenzy</span><span class="file">angrybirdsslingshotfrenzy.html</span></a>
+      <a class="card" href="angrybirdsspace.html" data-search="angrybirdsspace angrybirdsspace.html"><span class="name">Angrybirdsspace</span><span class="file">angrybirdsspace.html</span></a>
+      <a class="card" href="animalcrossing.html" data-search="animalcrossing animalcrossing.html"><span class="name">Animalcrossing</span><span class="file">animalcrossing.html</span></a>
+      <a class="card" href="appel.html" data-search="appel appel.html"><span class="name">Appel</span><span class="file">appel.html</span></a>
+      <a class="card" href="appleworm.html" data-search="appleworm appleworm.html"><span class="name">Appleworm</span><span class="file">appleworm.html</span></a>
+      <a class="card" href="asmallworldcup.html" data-search="asmallworldcup asmallworldcup.html"><span class="name">Asmallworldcup</span><span class="file">asmallworldcup.html</span></a>
+      <a class="card" href="Aura%20RNG.html" data-search="aura rng aura rng.html"><span class="name">Aura RNG</span><span class="file">Aura RNG.html</span></a>
+      <a class="card" href="awesometanks2.html" data-search="awesometanks2 awesometanks2.html"><span class="name">Awesometanks2</span><span class="file">awesometanks2.html</span></a>
+      <a class="card" href="Backrooms.html" data-search="backrooms backrooms.html"><span class="name">Backrooms</span><span class="file">Backrooms.html</span></a>
+      <a class="card" href="Backyard%20Baseball.html" data-search="backyard baseball backyard baseball.html"><span class="name">Backyard Baseball</span><span class="file">Backyard Baseball.html</span></a>
+      <a class="card" href="badparenting.html" data-search="badparenting badparenting.html"><span class="name">Badparenting</span><span class="file">badparenting.html</span></a>
+      <a class="card" href="badtimessim.html" data-search="badtimessim badtimessim.html"><span class="name">Badtimessim</span><span class="file">badtimessim.html</span></a>
+      <a class="card" href="balatro.html" data-search="balatro balatro.html"><span class="name">Balatro</span><span class="file">balatro.html</span></a>
+      <a class="card" href="Baseball%20Bros.html" data-search="baseball bros baseball bros.html"><span class="name">Baseball Bros</span><span class="file">Baseball Bros.html</span></a>
+      <a class="card" href="Basketball%20Bros.html" data-search="basketball bros basketball bros.html"><span class="name">Basketball Bros</span><span class="file">Basketball Bros.html</span></a>
+      <a class="card" href="Basketball%20Stars.html" data-search="basketball stars basketball stars.html"><span class="name">Basketball Stars</span><span class="file">Basketball Stars.html</span></a>
+      <a class="card" href="bitplanes.html" data-search="bitplanes bitplanes.html"><span class="name">Bitplanes</span><span class="file">bitplanes.html</span></a>
+      <a class="card" href="Blade%20Ball.html" data-search="blade ball blade ball.html"><span class="name">Blade Ball</span><span class="file">Blade Ball.html</span></a>
+      <a class="card" href="blockblast.html" data-search="blockblast blockblast.html"><span class="name">Blockblast</span><span class="file">blockblast.html</span></a>
+      <a class="card" href="Blockcraftparkour.html" data-search="blockcraftparkour blockcraftparkour.html"><span class="name">Blockcraftparkour</span><span class="file">Blockcraftparkour.html</span></a>
+      <a class="card" href="Blocky%20Snakes.html" data-search="blocky snakes blocky snakes.html"><span class="name">Blocky Snakes</span><span class="file">Blocky Snakes.html</span></a>
+      <a class="card" href="Bloons.html" data-search="bloons bloons.html"><span class="name">Bloons</span><span class="file">Bloons.html</span></a>
+      <a class="card" href="Bloons%20TD%202.html" data-search="bloons td 2 bloons td 2.html"><span class="name">Bloons TD 2</span><span class="file">Bloons TD 2.html</span></a>
+      <a class="card" href="Bloons%20TD%204.html" data-search="bloons td 4 bloons td 4.html"><span class="name">Bloons TD 4</span><span class="file">Bloons TD 4.html</span></a>
+      <a class="card" href="bloxorz.html" data-search="bloxorz bloxorz.html"><span class="name">Bloxorz</span><span class="file">bloxorz.html</span></a>
+      <a class="card" href="bobtherobber.html" data-search="bobtherobber bobtherobber.html"><span class="name">Bobtherobber</span><span class="file">bobtherobber.html</span></a>
+      <a class="card" href="brawlstars.html" data-search="brawlstars brawlstars.html"><span class="name">Brawlstars</span><span class="file">brawlstars.html</span></a>
+      <a class="card" href="brotato.html" data-search="brotato brotato.html"><span class="name">Brotato</span><span class="file">brotato.html</span></a>
+      <a class="card" href="Bubbleshooter.html" data-search="bubbleshooter bubbleshooter.html"><span class="name">Bubbleshooter</span><span class="file">Bubbleshooter.html</span></a>
+      <a class="card" href="candycrush.html" data-search="candycrush candycrush.html"><span class="name">Candycrush</span><span class="file">candycrush.html</span></a>
+      <a class="card" href="cardrawing.html" data-search="cardrawing cardrawing.html"><span class="name">Cardrawing</span><span class="file">cardrawing.html</span></a>
+      <a class="card" href="castlevania.html" data-search="castlevania castlevania.html"><span class="name">Castlevania</span><span class="file">castlevania.html</span></a>
+      <a class="card" href="Celeste%20PICO.html" data-search="celeste pico celeste pico.html"><span class="name">Celeste PICO</span><span class="file">Celeste PICO.html</span></a>
+      <a class="card" href="Chess.html" data-search="chess chess.html"><span class="name">Chess</span><span class="file">Chess.html</span></a>
+      <a class="card" href="clgranny22.html" data-search="clgranny22 clgranny22.html"><span class="name">Clgranny22</span><span class="file">clgranny22.html</span></a>
+      <a class="card" href="clgranny3.html" data-search="clgranny3 clgranny3.html"><span class="name">Clgranny3</span><span class="file">clgranny3.html</span></a>
+      <a class="card" href="clgrannycreepy.html" data-search="clgrannycreepy clgrannycreepy.html"><span class="name">Clgrannycreepy</span><span class="file">clgrannycreepy.html</span></a>
+      <a class="card" href="clgrannynightmare.html" data-search="clgrannynightmare clgrannynightmare.html"><span class="name">Clgrannynightmare</span><span class="file">clgrannynightmare.html</span></a>
+      <a class="card" href="Climbforbrainrots.html" data-search="climbforbrainrots climbforbrainrots.html"><span class="name">Climbforbrainrots</span><span class="file">Climbforbrainrots.html</span></a>
+      <a class="card" href="cltunnelrushbetter.html" data-search="cltunnelrushbetter cltunnelrushbetter.html"><span class="name">Cltunnelrushbetter</span><span class="file">cltunnelrushbetter.html</span></a>
+      <a class="card" href="clusterrush.html" data-search="clusterrush clusterrush.html"><span class="name">Clusterrush</span><span class="file">clusterrush.html</span></a>
+      <a class="card" href="clwindowsxpfull%20fullscreen.html" data-search="clwindowsxpfull fullscreen clwindowsxpfull fullscreen.html"><span class="name">Clwindowsxpfull fullscreen</span><span class="file">clwindowsxpfull fullscreen.html</span></a>
+      <a class="card" href="cookieclicker.htm" data-search="cookieclicker cookieclicker.htm"><span class="name">Cookieclicker</span><span class="file">cookieclicker.htm</span></a>
+      <a class="card" href="Crazyclimber.html" data-search="crazyclimber crazyclimber.html"><span class="name">Crazyclimber</span><span class="file">Crazyclimber.html</span></a>
+      <a class="card" href="crazymotorcycle.html" data-search="crazymotorcycle crazymotorcycle.html"><span class="name">Crazymotorcycle</span><span class="file">crazymotorcycle.html</span></a>
+      <a class="card" href="crossyroad.htm" data-search="crossyroad crossyroad.htm"><span class="name">Crossyroad</span><span class="file">crossyroad.htm</span></a>
+      <a class="card" href="Csgoclicker.html" data-search="csgoclicker csgoclicker.html"><span class="name">Csgoclicker</span><span class="file">Csgoclicker.html</span></a>
+      <a class="card" href="Death%20Run%203D.html" data-search="death run 3d death run 3d.html"><span class="name">Death Run 3D</span><span class="file">Death Run 3D.html</span></a>
+      <a class="card" href="Dinorun.html" data-search="dinorun dinorun.html"><span class="name">Dinorun</span><span class="file">Dinorun.html</span></a>
+      <a class="card" href="dogecoinminer.html" data-search="dogecoinminer dogecoinminer.html"><span class="name">Dogecoinminer</span><span class="file">dogecoinminer.html</span></a>
+      <a class="card" href="donkeykong.html" data-search="donkeykong donkeykong.html"><span class="name">Donkeykong</span><span class="file">donkeykong.html</span></a>
+      <a class="card" href="Doubledribble.html" data-search="doubledribble doubledribble.html"><span class="name">Doubledribble</span><span class="file">Doubledribble.html</span></a>
+      <a class="card" href="Drawclimber.html" data-search="drawclimber drawclimber.html"><span class="name">Drawclimber</span><span class="file">Drawclimber.html</span></a>
+      <a class="card" href="dreadheadparkour.htm" data-search="dreadheadparkour dreadheadparkour.htm"><span class="name">Dreadheadparkour</span><span class="file">dreadheadparkour.htm</span></a>
+      <a class="card" href="Drift%20Boss.htm" data-search="drift boss drift boss.htm"><span class="name">Drift Boss</span><span class="file">Drift Boss.htm</span></a>
+      <a class="card" href="drivemad.htm" data-search="drivemad drivemad.htm"><span class="name">Drivemad</span><span class="file">drivemad.htm</span></a>
+      <a class="card" href="Duck%20Life%204.html" data-search="duck life 4 duck life 4.html"><span class="name">Duck Life 4</span><span class="file">Duck Life 4.html</span></a>
+      <a class="card" href="Ducklife.html" data-search="ducklife ducklife.html"><span class="name">Ducklife</span><span class="file">Ducklife.html</span></a>
+      <a class="card" href="Ducklife%202.html" data-search="ducklife 2 ducklife 2.html"><span class="name">Ducklife 2</span><span class="file">Ducklife 2.html</span></a>
+      <a class="card" href="Ducklife%203.html" data-search="ducklife 3 ducklife 3.html"><span class="name">Ducklife 3</span><span class="file">Ducklife 3.html</span></a>
+      <a class="card" href="Ducklife%204.html" data-search="ducklife 4 ducklife 4.html"><span class="name">Ducklife 4</span><span class="file">Ducklife 4.html</span></a>
+      <a class="card" href="ducklife3.html" data-search="ducklife3 ducklife3.html"><span class="name">Ducklife3</span><span class="file">ducklife3.html</span></a>
+      <a class="card" href="ducklife5.html" data-search="ducklife5 ducklife5.html"><span class="name">Ducklife5</span><span class="file">ducklife5.html</span></a>
+      <a class="card" href="Dunebuggy.html" data-search="dunebuggy dunebuggy.html"><span class="name">Dunebuggy</span><span class="file">Dunebuggy.html</span></a>
+      <a class="card" href="dylanclient-26.3-r2-music-jsdelivr.html" data-search="dylanclient-26.3-r2-music-jsdelivr dylanclient-26.3-r2-music-jsdelivr.html"><span class="name">Dylanclient-26.3-r2-music-jsdelivr</span><span class="file">dylanclient-26.3-r2-music-jsdelivr.html</span></a>
+      <a class="card" href="Eagle%20Ride.html" data-search="eagle ride eagle ride.html"><span class="name">Eagle Ride</span><span class="file">Eagle Ride.html</span></a>
+      <a class="card" href="earntodie.html" data-search="earntodie earntodie.html"><span class="name">Earntodie</span><span class="file">earntodie.html</span></a>
+      <a class="card" href="eggycar.html" data-search="eggycar eggycar.html"><span class="name">Eggycar</span><span class="file">eggycar.html</span></a>
+      <a class="card" href="elasticface.htm" data-search="elasticface elasticface.htm"><span class="name">Elasticface</span><span class="file">elasticface.htm</span></a>
+      <a class="card" href="Electricman%202.html" data-search="electricman 2 electricman 2.html"><span class="name">Electricman 2</span><span class="file">Electricman 2.html</span></a>
+      <a class="card" href="escaperoad.html" data-search="escaperoad escaperoad.html"><span class="name">Escaperoad</span><span class="file">escaperoad.html</span></a>
+      <a class="card" href="escapingtheprison.html" data-search="escapingtheprison escapingtheprison.html"><span class="name">Escapingtheprison</span><span class="file">escapingtheprison.html</span></a>
+      <a class="card" href="Five%20Nights%20at%20Epstein%27s.html" data-search="five nights at epstein&#x27;s five nights at epstein&#x27;s.html"><span class="name">Five Nights at Epstein&#x27;s</span><span class="file">Five Nights at Epstein&#x27;s.html</span></a>
+      <a class="card" href="Flappy%20Bird.html" data-search="flappy bird flappy bird.html"><span class="name">Flappy Bird</span><span class="file">Flappy Bird.html</span></a>
+      <a class="card" href="Flood%20Runner%204.html" data-search="flood runner 4 flood runner 4.html"><span class="name">Flood Runner 4</span><span class="file">Flood Runner 4.html</span></a>
+      <a class="card" href="floodrunner3.html" data-search="floodrunner3 floodrunner3.html"><span class="name">Floodrunner3</span><span class="file">floodrunner3.html</span></a>
+      <a class="card" href="FNAF.html" data-search="fnaf fnaf.html"><span class="name">FNAF</span><span class="file">FNAF.html</span></a>
+      <a class="card" href="fnaf4.html" data-search="fnaf4 fnaf4.html"><span class="name">Fnaf4</span><span class="file">fnaf4.html</span></a>
+      <a class="card" href="fnfanimation.html" data-search="fnfanimation fnfanimation.html"><span class="name">Fnfanimation</span><span class="file">fnfanimation.html</span></a>
+      <a class="card" href="fnftwiddlefinger.html" data-search="fnftwiddlefinger fnftwiddlefinger.html"><span class="name">Fnftwiddlefinger</span><span class="file">fnftwiddlefinger.html</span></a>
+      <a class="card" href="fnfvimpos.html" data-search="fnfvimpos fnfvimpos.html"><span class="name">Fnfvimpos</span><span class="file">fnfvimpos.html</span></a>
+      <a class="card" href="footballbros.html" data-search="footballbros footballbros.html"><span class="name">Footballbros</span><span class="file">footballbros.html</span></a>
+      <a class="card" href="freer.html" data-search="freer freer.html"><span class="name">Freer</span><span class="file">freer.html</span></a>
+      <a class="card" href="funnybattle.html" data-search="funnybattle funnybattle.html"><span class="name">Funnybattle</span><span class="file">funnybattle.html</span></a>
+      <a class="card" href="funnybattle2.html" data-search="funnybattle2 funnybattle2.html"><span class="name">Funnybattle2</span><span class="file">funnybattle2.html</span></a>
+      <a class="card" href="geodashscratch.html" data-search="geodashscratch geodashscratch.html"><span class="name">Geodashscratch</span><span class="file">geodashscratch.html</span></a>
+      <a class="card" href="geoguesseraislop.html" data-search="geoguesseraislop geoguesseraislop.html"><span class="name">Geoguesseraislop</span><span class="file">geoguesseraislop.html</span></a>
+      <a class="card" href="Getaway%20Shootout.htm" data-search="getaway shootout getaway shootout.htm"><span class="name">Getaway Shootout</span><span class="file">Getaway Shootout.htm</span></a>
+      <a class="card" href="Getontop.html" data-search="getontop getontop.html"><span class="name">Getontop</span><span class="file">Getontop.html</span></a>
+      <a class="card" href="gladihoppers.html" data-search="gladihoppers gladihoppers.html"><span class="name">Gladihoppers</span><span class="file">gladihoppers.html</span></a>
+      <a class="card" href="goodboygalaxy.html" data-search="goodboygalaxy goodboygalaxy.html"><span class="name">Goodboygalaxy</span><span class="file">goodboygalaxy.html</span></a>
+      <a class="card" href="googledino.html" data-search="googledino googledino.html"><span class="name">Googledino</span><span class="file">googledino.html</span></a>
+      <a class="card" href="Grandtheftautoadvance.html" data-search="grandtheftautoadvance grandtheftautoadvance.html"><span class="name">Grandtheftautoadvance</span><span class="file">Grandtheftautoadvance.html</span></a>
+      <a class="card" href="granny.html" data-search="granny granny.html"><span class="name">Granny</span><span class="file">granny.html</span></a>
+      <a class="card" href="growagarden.html" data-search="growagarden growagarden.html"><span class="name">Growagarden</span><span class="file">growagarden.html</span></a>
+      <a class="card" href="gta3.html" data-search="gta3 gta3.html"><span class="name">Gta3</span><span class="file">gta3.html</span></a>
+      <a class="card" href="Guess%20Their%20Answer.html" data-search="guess their answer guess their answer.html"><span class="name">Guess Their Answer</span><span class="file">Guess Their Answer.html</span></a>
+      <a class="card" href="Happy%20Wheels.html" data-search="happy wheels happy wheels.html"><span class="name">Happy Wheels</span><span class="file">Happy Wheels.html</span></a>
+      <a class="card" href="Hextris.html" data-search="hextris hextris.html"><span class="name">Hextris</span><span class="file">Hextris.html</span></a>
+      <a class="card" href="High%20Speed.html" data-search="high speed high speed.html"><span class="name">High Speed</span><span class="file">High Speed.html</span></a>
+      <a class="card" href="Hobo%203%20%281%29.html" data-search="hobo 3 hobo 3 (1).html"><span class="name">Hobo 3</span><span class="file">Hobo 3 (1).html</span></a>
+      <a class="card" href="Hobo%204%20%281%29.html" data-search="hobo 4 hobo 4 (1).html"><span class="name">Hobo 4</span><span class="file">Hobo 4 (1).html</span></a>
+      <a class="card" href="Hobo%205%20%281%29.html" data-search="hobo 5 hobo 5 (1).html"><span class="name">Hobo 5</span><span class="file">Hobo 5 (1).html</span></a>
+      <a class="card" href="Hobo%206%20%281%29.html" data-search="hobo 6 hobo 6 (1).html"><span class="name">Hobo 6</span><span class="file">Hobo 6 (1).html</span></a>
+      <a class="card" href="Hobo%207%20%281%29.html" data-search="hobo 7 hobo 7 (1).html"><span class="name">Hobo 7</span><span class="file">Hobo 7 (1).html</span></a>
+      <a class="card" href="hollowknight.html" data-search="hollowknight hollowknight.html"><span class="name">Hollowknight</span><span class="file">hollowknight.html</span></a>
+      <a class="card" href="Huggywuggypixel.html" data-search="huggywuggypixel huggywuggypixel.html"><span class="name">Huggywuggypixel</span><span class="file">Huggywuggypixel.html</span></a>
+      <a class="card" href="Iceclimber.html" data-search="iceclimber iceclimber.html"><span class="name">Iceclimber</span><span class="file">Iceclimber.html</span></a>
+      <a class="card" href="Idlebreakout.html" data-search="idlebreakout idlebreakout.html"><span class="name">Idlebreakout</span><span class="file">Idlebreakout.html</span></a>
+      <a class="card" href="Idledice.html" data-search="idledice idledice.html"><span class="name">Idledice</span><span class="file">Idledice.html</span></a>
+      <a class="card" href="Infinitecraft.html" data-search="infinitecraft infinitecraft.html"><span class="name">Infinitecraft</span><span class="file">Infinitecraft.html</span></a>
+      <a class="card" href="jellymariofixed.html" data-search="jellymariofixed jellymariofixed.html"><span class="name">Jellymariofixed</span><span class="file">jellymariofixed.html</span></a>
+      <a class="card" href="Johnnytrigger.html" data-search="johnnytrigger johnnytrigger.html"><span class="name">Johnnytrigger</span><span class="file">Johnnytrigger.html</span></a>
+      <a class="card" href="justfallLOL.html" data-search="justfalllol justfalllol.html"><span class="name">justfallLOL</span><span class="file">justfallLOL.html</span></a>
+      <a class="card" href="Karate%20Bros.html" data-search="karate bros karate bros.html"><span class="name">Karate Bros</span><span class="file">Karate Bros.html</span></a>
+      <a class="card" href="karlson.html" data-search="karlson karlson.html"><span class="name">Karlson</span><span class="file">karlson.html</span></a>
+      <a class="card" href="Kirby%2064.html" data-search="kirby 64 kirby 64.html"><span class="name">Kirby 64</span><span class="file">Kirby 64.html</span></a>
+      <a class="card" href="Kirbysdreamland.html" data-search="kirbysdreamland kirbysdreamland.html"><span class="name">Kirbysdreamland</span><span class="file">Kirbysdreamland.html</span></a>
+      <a class="card" href="Linerider.html" data-search="linerider linerider.html"><span class="name">Linerider</span><span class="file">Linerider.html</span></a>
+      <a class="card" href="lobot.html" data-search="lobot lobot.html"><span class="name">Lobot</span><span class="file">lobot.html</span></a>
+      <a class="card" href="Madnesscombatdefense.html" data-search="madnesscombatdefense madnesscombatdefense.html"><span class="name">Madnesscombatdefense</span><span class="file">Madnesscombatdefense.html</span></a>
+      <a class="card" href="Mariopaint.html" data-search="mariopaint mariopaint.html"><span class="name">Mariopaint</span><span class="file">Mariopaint.html</span></a>
+      <a class="card" href="melonplayground.html" data-search="melonplayground melonplayground.html"><span class="name">Melonplayground</span><span class="file">melonplayground.html</span></a>
+      <a class="card" href="Minecraft%201.12.2.html" data-search="minecraft 1.12.2 minecraft 1.12.2.html"><span class="name">Minecraft 1.12.2</span><span class="file">Minecraft 1.12.2.html</span></a>
+      <a class="card" href="Minecraft%201.9.4.html" data-search="minecraft 1.9.4 minecraft 1.9.4.html"><span class="name">Minecraft 1.9.4</span><span class="file">Minecraft 1.9.4.html</span></a>
+      <a class="card" href="Minecraft%20Alpha%201.2.6.html" data-search="minecraft alpha 1.2.6 minecraft alpha 1.2.6.html"><span class="name">Minecraft Alpha 1.2.6</span><span class="file">Minecraft Alpha 1.2.6.html</span></a>
+      <a class="card" href="Minecraft%20Beta%201.3.html" data-search="minecraft beta 1.3 minecraft beta 1.3.html"><span class="name">Minecraft Beta 1.3</span><span class="file">Minecraft Beta 1.3.html</span></a>
+      <a class="card" href="Minecraft%20Beta%201.7.3.html" data-search="minecraft beta 1.7.3 minecraft beta 1.7.3.html"><span class="name">Minecraft Beta 1.7.3</span><span class="file">Minecraft Beta 1.7.3.html</span></a>
+      <a class="card" href="Minecraft%20Indev.html" data-search="minecraft indev minecraft indev.html"><span class="name">Minecraft Indev</span><span class="file">Minecraft Indev.html</span></a>
+      <a class="card" href="minecraftpe.html" data-search="minecraftpe minecraftpe.html"><span class="name">Minecraftpe</span><span class="file">minecraftpe.html</span></a>
+      <a class="card" href="Momimsleeping.html" data-search="momimsleeping momimsleeping.html"><span class="name">Momimsleeping</span><span class="file">Momimsleeping.html</span></a>
+      <a class="card" href="monkeymart.htm" data-search="monkeymart monkeymart.htm"><span class="name">Monkeymart</span><span class="file">monkeymart.htm</span></a>
+      <a class="card" href="motox3m.htm" data-search="motox3m motox3m.htm"><span class="name">Motox3m</span><span class="file">motox3m.htm</span></a>
+      <a class="card" href="motox3m3.html" data-search="motox3m3 motox3m3.html"><span class="name">Motox3m3</span><span class="file">motox3m3.html</span></a>
+      <a class="card" href="mountainbikeracer.html" data-search="mountainbikeracer mountainbikeracer.html"><span class="name">Mountainbikeracer</span><span class="file">mountainbikeracer.html</span></a>
+      <a class="card" href="Mvpbaseball.html" data-search="mvpbaseball mvpbaseball.html"><span class="name">Mvpbaseball</span><span class="file">Mvpbaseball.html</span></a>
+      <a class="card" href="Neonblaster.html" data-search="neonblaster neonblaster.html"><span class="name">Neonblaster</span><span class="file">Neonblaster.html</span></a>
+      <a class="card" href="Neonrider.html" data-search="neonrider neonrider.html"><span class="name">Neonrider</span><span class="file">Neonrider.html</span></a>
+      <a class="card" href="Nightshade.html" data-search="nightshade nightshade.html"><span class="name">Nightshade</span><span class="file">Nightshade.html</span></a>
+      <a class="card" href="Ninja%20vs%20EvilCorp.html" data-search="ninja vs evilcorp ninja vs evilcorp.html"><span class="name">Ninja vs EvilCorp</span><span class="file">Ninja vs EvilCorp.html</span></a>
+      <a class="card" href="noobminer.html" data-search="noobminer noobminer.html"><span class="name">Noobminer</span><span class="file">noobminer.html</span></a>
+      <a class="card" href="oppositeday.html" data-search="oppositeday oppositeday.html"><span class="name">Oppositeday</span><span class="file">oppositeday.html</span></a>
+      <a class="card" href="papasburgeria.html" data-search="papasburgeria papasburgeria.html"><span class="name">Papasburgeria</span><span class="file">papasburgeria.html</span></a>
+      <a class="card" href="papascheeseria.html" data-search="papascheeseria papascheeseria.html"><span class="name">Papascheeseria</span><span class="file">papascheeseria.html</span></a>
+      <a class="card" href="papascupcakeria.html" data-search="papascupcakeria papascupcakeria.html"><span class="name">Papascupcakeria</span><span class="file">papascupcakeria.html</span></a>
+      <a class="card" href="papasdonuteria.html" data-search="papasdonuteria papasdonuteria.html"><span class="name">Papasdonuteria</span><span class="file">papasdonuteria.html</span></a>
+      <a class="card" href="papasfreezeria.html" data-search="papasfreezeria papasfreezeria.html"><span class="name">Papasfreezeria</span><span class="file">papasfreezeria.html</span></a>
+      <a class="card" href="papashotdoggeria.html" data-search="papashotdoggeria papashotdoggeria.html"><span class="name">Papashotdoggeria</span><span class="file">papashotdoggeria.html</span></a>
+      <a class="card" href="papaspancakeria.html" data-search="papaspancakeria papaspancakeria.html"><span class="name">Papaspancakeria</span><span class="file">papaspancakeria.html</span></a>
+      <a class="card" href="papaspastaria.html" data-search="papaspastaria papaspastaria.html"><span class="name">Papaspastaria</span><span class="file">papaspastaria.html</span></a>
+      <a class="card" href="papaspizzeria.html" data-search="papaspizzeria papaspizzeria.html"><span class="name">Papaspizzeria</span><span class="file">papaspizzeria.html</span></a>
+      <a class="card" href="papastacomia.html" data-search="papastacomia papastacomia.html"><span class="name">Papastacomia</span><span class="file">papastacomia.html</span></a>
+      <a class="card" href="papaswingeria.html" data-search="papaswingeria papaswingeria.html"><span class="name">Papaswingeria</span><span class="file">papaswingeria.html</span></a>
+      <a class="card" href="Paper%20Mario%20Practice%20Hack.html" data-search="paper mario practice hack paper mario practice hack.html"><span class="name">Paper Mario Practice Hack</span><span class="file">Paper Mario Practice Hack.html</span></a>
+      <a class="card" href="Paper%20Minecraft%20v11%20%281%29.html" data-search="paper minecraft v11 paper minecraft v11 (1).html"><span class="name">Paper Minecraft v11</span><span class="file">Paper Minecraft v11 (1).html</span></a>
+      <a class="card" href="paperio2.html" data-search="paperio2 paperio2.html"><span class="name">Paperio2</span><span class="file">paperio2.html</span></a>
+      <a class="card" href="perfectcircle.html" data-search="perfectcircle perfectcircle.html"><span class="name">Perfectcircle</span><span class="file">perfectcircle.html</span></a>
+      <a class="card" href="plantsvszombies.html" data-search="plantsvszombies plantsvszombies.html"><span class="name">Plantsvszombies</span><span class="file">plantsvszombies.html</span></a>
+      <a class="card" href="Pokemon%20Emerald.html" data-search="pokemon emerald pokemon emerald.html"><span class="name">Pokemon Emerald</span><span class="file">Pokemon Emerald.html</span></a>
+      <a class="card" href="pokeunbound.html" data-search="pokeunbound pokeunbound.html"><span class="name">Pokeunbound</span><span class="file">pokeunbound.html</span></a>
+      <a class="card" href="Quantum%20Clicker.html" data-search="quantum clicker quantum clicker.html"><span class="name">Quantum Clicker</span><span class="file">Quantum Clicker.html</span></a>
+      <a class="card" href="Raftwars.html" data-search="raftwars raftwars.html"><span class="name">Raftwars</span><span class="file">Raftwars.html</span></a>
+      <a class="card" href="Ragdollachivement.html" data-search="ragdollachivement ragdollachivement.html"><span class="name">Ragdollachivement</span><span class="file">Ragdollachivement.html</span></a>
+      <a class="card" href="ragdollarchers.html" data-search="ragdollarchers ragdollarchers.html"><span class="name">Ragdollarchers</span><span class="file">ragdollarchers.html</span></a>
+      <a class="card" href="Ragdollrunners.html" data-search="ragdollrunners ragdollrunners.html"><span class="name">Ragdollrunners</span><span class="file">Ragdollrunners.html</span></a>
+      <a class="card" href="Ragdollsoccer.html" data-search="ragdollsoccer ragdollsoccer.html"><span class="name">Ragdollsoccer</span><span class="file">Ragdollsoccer.html</span></a>
+      <a class="card" href="Retro%20Bowl.html" data-search="retro bowl retro bowl.html"><span class="name">Retro Bowl</span><span class="file">Retro Bowl.html</span></a>
+      <a class="card" href="Retrobowlcollege.html" data-search="retrobowlcollege retrobowlcollege.html"><span class="name">Retrobowlcollege</span><span class="file">Retrobowlcollege.html</span></a>
+      <a class="card" href="riddleschool.html" data-search="riddleschool riddleschool.html"><span class="name">Riddleschool</span><span class="file">riddleschool.html</span></a>
+      <a class="card" href="riddleschool2.html" data-search="riddleschool2 riddleschool2.html"><span class="name">Riddleschool2</span><span class="file">riddleschool2.html</span></a>
+      <a class="card" href="riddleschool3.html" data-search="riddleschool3 riddleschool3.html"><span class="name">Riddleschool3</span><span class="file">riddleschool3.html</span></a>
+      <a class="card" href="run3.html" data-search="run3 run3.html"><span class="name">Run3</span><span class="file">run3.html</span></a>
+      <a class="card" href="sandtris.html" data-search="sandtris sandtris.html"><span class="name">Sandtris</span><span class="file">sandtris.html</span></a>
+      <a class="card" href="scratchsinglefile.html" data-search="scratchsinglefile scratchsinglefile.html"><span class="name">Scratchsinglefile</span><span class="file">scratchsinglefile.html</span></a>
+      <a class="card" href="Sega%20Sonic%20The%20Hedgehog.html" data-search="sega sonic the hedgehog sega sonic the hedgehog.html"><span class="name">Sega Sonic The Hedgehog</span><span class="file">Sega Sonic The Hedgehog.html</span></a>
+      <a class="card" href="Shortlife.html" data-search="shortlife shortlife.html"><span class="name">Shortlife</span><span class="file">Shortlife.html</span></a>
+      <a class="card" href="silk.html" data-search="silk silk.html"><span class="name">Silk</span><span class="file">silk.html</span></a>
+      <a class="card" href="Simpsonsarcade.html" data-search="simpsonsarcade simpsonsarcade.html"><span class="name">Simpsonsarcade</span><span class="file">Simpsonsarcade.html</span></a>
+      <a class="card" href="skibiditoiletio.html" data-search="skibiditoiletio skibiditoiletio.html"><span class="name">Skibiditoiletio</span><span class="file">skibiditoiletio.html</span></a>
+      <a class="card" href="slope.html" data-search="slope slope.html"><span class="name">Slope</span><span class="file">slope.html</span></a>
+      <a class="card" href="slope2player.html" data-search="slope2player slope2player.html"><span class="name">Slope2player</span><span class="file">slope2player.html</span></a>
+      <a class="card" href="slowroads.html" data-search="slowroads slowroads.html"><span class="name">Slowroads</span><span class="file">slowroads.html</span></a>
+      <a class="card" href="Snowballio.html" data-search="snowballio snowballio.html"><span class="name">Snowballio</span><span class="file">Snowballio.html</span></a>
+      <a class="card" href="Snowbros.html" data-search="snowbros snowbros.html"><span class="name">Snowbros</span><span class="file">Snowbros.html</span></a>
+      <a class="card" href="snowrider.htm" data-search="snowrider snowrider.htm"><span class="name">Snowrider</span><span class="file">snowrider.htm</span></a>
+      <a class="card" href="snowroad.html" data-search="snowroad snowroad.html"><span class="name">Snowroad</span><span class="file">snowroad.html</span></a>
+      <a class="card" href="soccerbros.html" data-search="soccerbros soccerbros.html"><span class="name">Soccerbros</span><span class="file">soccerbros.html</span></a>
+      <a class="card" href="solarsmash.html" data-search="solarsmash solarsmash.html"><span class="name">Solarsmash</span><span class="file">solarsmash.html</span></a>
+      <a class="card" href="sonic3.html" data-search="sonic3 sonic3.html"><span class="name">Sonic3</span><span class="file">sonic3.html</span></a>
+      <a class="card" href="spacebarclicker.html" data-search="spacebarclicker spacebarclicker.html"><span class="name">Spacebarclicker</span><span class="file">spacebarclicker.html</span></a>
+      <a class="card" href="stack.html" data-search="stack stack.html"><span class="name">Stack</span><span class="file">stack.html</span></a>
+      <a class="card" href="stealbrainrot.html" data-search="stealbrainrot stealbrainrot.html"><span class="name">Stealbrainrot</span><span class="file">stealbrainrot.html</span></a>
+      <a class="card" href="Superbomberman.html" data-search="superbomberman superbomberman.html"><span class="name">Superbomberman</span><span class="file">Superbomberman.html</span></a>
+      <a class="card" href="Supercarrush.html" data-search="supercarrush supercarrush.html"><span class="name">Supercarrush</span><span class="file">Supercarrush.html</span></a>
+      <a class="card" href="superchibiknight.html" data-search="superchibiknight superchibiknight.html"><span class="name">Superchibiknight</span><span class="file">superchibiknight.html</span></a>
+      <a class="card" href="Supermariokart.html" data-search="supermariokart supermariokart.html"><span class="name">Supermariokart</span><span class="file">Supermariokart.html</span></a>
+      <a class="card" href="Supersmashbros.html" data-search="supersmashbros supersmashbros.html"><span class="name">Supersmashbros</span><span class="file">Supersmashbros.html</span></a>
+      <a class="card" href="supremeduelist.html" data-search="supremeduelist supremeduelist.html"><span class="name">Supremeduelist</span><span class="file">supremeduelist.html</span></a>
+      <a class="card" href="Swordsandsouls.html" data-search="swordsandsouls swordsandsouls.html"><span class="name">Swordsandsouls</span><span class="file">Swordsandsouls.html</span></a>
+      <a class="card" href="Temple%20Run%202.html" data-search="temple run 2 temple run 2.html"><span class="name">Temple Run 2</span><span class="file">Temple Run 2.html</span></a>
+      <a class="card" href="Terraria%20%281%29.html" data-search="terraria terraria (1).html"><span class="name">Terraria</span><span class="file">Terraria (1).html</span></a>
+      <a class="card" href="territorialio.html" data-search="territorialio territorialio.html"><span class="name">Territorialio</span><span class="file">territorialio.html</span></a>
+      <a class="card" href="Territory%20War.html" data-search="territory war territory war.html"><span class="name">Territory War</span><span class="file">Territory War.html</span></a>
+      <a class="card" href="tinyfishing.html" data-search="tinyfishing tinyfishing.html"><span class="name">Tinyfishing</span><span class="file">tinyfishing.html</span></a>
+      <a class="card" href="Totally%20Accurate%20Battle%20Simulator%20%28TABS%29.html" data-search="totally accurate battle simulator (tabs) totally accurate battle simulator (tabs).html"><span class="name">Totally Accurate Battle Simulator (TABS)</span><span class="file">Totally Accurate Battle Simulator (TABS).html</span></a>
+      <a class="card" href="Traffic%20Racer.html" data-search="traffic racer traffic racer.html"><span class="name">Traffic Racer</span><span class="file">Traffic Racer.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%201.html" data-search="troll face quest 1 troll face quest 1.html"><span class="name">Troll Face Quest 1</span><span class="file">Troll Face Quest 1.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%2010.html" data-search="troll face quest 10 troll face quest 10.html"><span class="name">Troll Face Quest 10</span><span class="file">Troll Face Quest 10.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%2011.html" data-search="troll face quest 11 troll face quest 11.html"><span class="name">Troll Face Quest 11</span><span class="file">Troll Face Quest 11.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%2012.html" data-search="troll face quest 12 troll face quest 12.html"><span class="name">Troll Face Quest 12</span><span class="file">Troll Face Quest 12.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%2013.html" data-search="troll face quest 13 troll face quest 13.html"><span class="name">Troll Face Quest 13</span><span class="file">Troll Face Quest 13.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%202.html" data-search="troll face quest 2 troll face quest 2.html"><span class="name">Troll Face Quest 2</span><span class="file">Troll Face Quest 2.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%203.html" data-search="troll face quest 3 troll face quest 3.html"><span class="name">Troll Face Quest 3</span><span class="file">Troll Face Quest 3.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%204.html" data-search="troll face quest 4 troll face quest 4.html"><span class="name">Troll Face Quest 4</span><span class="file">Troll Face Quest 4.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%205.html" data-search="troll face quest 5 troll face quest 5.html"><span class="name">Troll Face Quest 5</span><span class="file">Troll Face Quest 5.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%206.html" data-search="troll face quest 6 troll face quest 6.html"><span class="name">Troll Face Quest 6</span><span class="file">Troll Face Quest 6.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%207.html" data-search="troll face quest 7 troll face quest 7.html"><span class="name">Troll Face Quest 7</span><span class="file">Troll Face Quest 7.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%208.html" data-search="troll face quest 8 troll face quest 8.html"><span class="name">Troll Face Quest 8</span><span class="file">Troll Face Quest 8.html</span></a>
+      <a class="card" href="Troll%20Face%20Quest%209.html" data-search="troll face quest 9 troll face quest 9.html"><span class="name">Troll Face Quest 9</span><span class="file">Troll Face Quest 9.html</span></a>
+      <a class="card" href="Tungtungtungsahurobby.html" data-search="tungtungtungsahurobby tungtungtungsahurobby.html"><span class="name">Tungtungtungsahurobby</span><span class="file">Tungtungtungsahurobby.html</span></a>
+      <a class="card" href="ULTRAKILL.html" data-search="ultrakill ultrakill.html"><span class="name">ULTRAKILL</span><span class="file">ULTRAKILL.html</span></a>
+      <a class="card" href="undertaleicebound.html" data-search="undertaleicebound undertaleicebound.html"><span class="name">Undertaleicebound</span><span class="file">undertaleicebound.html</span></a>
+      <a class="card" href="wavedash.html" data-search="wavedash wavedash.html"><span class="name">Wavedash</span><span class="file">wavedash.html</span></a>
+      <a class="card" href="wheely.html" data-search="wheely wheely.html"><span class="name">Wheely</span><span class="file">wheely.html</span></a>
+      <a class="card" href="wheely2.html" data-search="wheely2 wheely2.html"><span class="name">Wheely2</span><span class="file">wheely2.html</span></a>
+      <a class="card" href="wheely3.html" data-search="wheely3 wheely3.html"><span class="name">Wheely3</span><span class="file">wheely3.html</span></a>
+      <a class="card" href="wheely4.html" data-search="wheely4 wheely4.html"><span class="name">Wheely4</span><span class="file">wheely4.html</span></a>
+      <a class="card" href="wheely5.html" data-search="wheely5 wheely5.html"><span class="name">Wheely5</span><span class="file">wheely5.html</span></a>
+      <a class="card" href="wheely6.html" data-search="wheely6 wheely6.html"><span class="name">Wheely6</span><span class="file">wheely6.html</span></a>
+      <a class="card" href="wheely7.html" data-search="wheely7 wheely7.html"><span class="name">Wheely7</span><span class="file">wheely7.html</span></a>
+      <a class="card" href="wheely8.html" data-search="wheely8 wheely8.html"><span class="name">Wheely8</span><span class="file">wheely8.html</span></a>
+      <a class="card" href="wordle.html" data-search="wordle wordle.html"><span class="name">Wordle</span><span class="file">wordle.html</span></a>
+  </div>
+  <p id="empty">No games match that search.</p>
+</main>
+<footer>Every game opens in its own page. Bookmark the ones you play.</footer>
+<script>
+  var input = document.getElementById('search');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var count = document.getElementById('count');
+  var empty = document.getElementById('empty');
+  var total = cards.length;
+  function apply() {
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    for (var i = 0; i < cards.length; i++) {
+      var hit = !q || cards[i].getAttribute('data-search').indexOf(q) !== -1;
+      cards[i].classList.toggle('hide', !hit);
+      if (hit) shown++;
+    }
+    count.textContent = q ? shown + ' of ' + total + ' games' : total + ' games';
+    empty.classList.toggle('show', shown === 0);
+  }
+  input.addEventListener('input', apply);
+</script>
+</body>
+</html>
